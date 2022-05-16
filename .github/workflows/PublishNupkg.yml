@@ -12,6 +12,7 @@ defaults:
            pwsh -noninteractive -command "try {{ $ErrorActionPreference='Stop'; . '{0}' }} catch {{ Write-Error ""FAILED: $_""; throw; }} if ((Test-Path -LiteralPath variable:\LASTEXITCODE)) {{ exit $LASTEXITCODE }}"
 env:
   BUILD_CONFIGURATION:  'Release'
+  REQUESTED_DOTNET_VERSION: '5.x.x'
 
 jobs:
   build:
@@ -27,7 +28,7 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v2
         with:
-          dotnet-version: 6.x.x
+          dotnet-version: '${{ env.REQUESTED_DOTNET_VERSION }}'
 
       - name: Build
         run:  |
@@ -36,14 +37,17 @@ jobs:
       - name: Pack
         run:  |
               dotnet pack -c ${{ env.BUILD_CONFIGURATION }}
+    
+      - name: Upload Package to nuget.org
+        id:   upload
+        uses: tedd/publish-nuget-neo@v1.0.2
+        with:
+          NUGET_KEY:  '${{ secrets.NUGET_API_KEY }}'
+          REBUILD_PROJECT: false
               
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
         with:
           name: nupkg
-          path: '${{ github.workspace }}/bin/${{ env.BUILD_CONFIGURATION }}/*.nupkg'
-    
-      - name: Upload Package to nuget.org
-        uses: tedd/publish-nuget-neo@v1.0.2
-        with:
-          NUGET_KEY:  '${{ secrets.NUGET_API_KEY }}'
+          path: '${{ steps.upload.outputs.PACKAGE_PATH }}'
+
