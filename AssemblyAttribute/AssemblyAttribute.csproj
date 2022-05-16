@@ -1,26 +1,33 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
-    <RunPostBuildEvent>OnOutputUpdated</RunPostBuildEvent>
-    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <Authors>radj307</Authors>
-    <Description>Simple, reusable attributes for CI scripts that edit .csproj files.</Description>
-    <Copyright>GPLv3</Copyright>
-    <PackageProjectUrl>https://github.com/radj307/AssemblyAttribute</PackageProjectUrl>
-    <PackageReadmeFile>README.md</PackageReadmeFile>
-    <RepositoryUrl>https://github.com/radj307/AssemblyAttribute</RepositoryUrl>
-    <RepositoryType>git</RepositoryType>
-    <NeutralLanguage>en-CA</NeutralLanguage>
-    <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
-    <PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net5.0</TargetFramework>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<Authors>radj307</Authors>
+		<Description>Simple, reusable attributes for CI scripts that edit .csproj files.</Description>
+		<Copyright>GPLv3</Copyright>
+		<PackageProjectUrl>https://github.com/radj307/AssemblyAttribute</PackageProjectUrl>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<RepositoryUrl>https://github.com/radj307/AssemblyAttribute</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<NeutralLanguage>en-CA</NeutralLanguage>
+		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+		<PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
+		<Version>0.0.0.0</Version>
+		<ExtendedVersion>0.0.0</ExtendedVersion>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <None Include="..\README.md">
-      <Pack>True</Pack>
-      <PackagePath>\</PackagePath>
-    </None>
-  </ItemGroup>
+	<ItemGroup>
+		<AssemblyAttribute Include="AssemblyAttribute.ExtendedVersion">
+			<_Parameter1>$(ExtendedVersion)</_Parameter1>
+		</AssemblyAttribute>
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Include="..\README.md">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+	</ItemGroup>
 
 </Project>

@@ -1,21 +1,41 @@
 ﻿using System;
 using System.Collections;
+using System.Reflection;
 
 namespace AssemblyAttribute
 {
-    /// <summary>
-    /// <see cref="BaseAssemblyAttribute"/>-derived attribute that can be used for tags that contain semantic versioning.
-    /// </summary>
+    /// <summary><see cref="BaseAssemblyAttribute"/>-derived attribute that can be used for tags that contain semantic versioning.<br/>This doesn't follow attribute naming conventions because it isn't a conventional attribute.</summary>
+    /// <remarks>
+    /// Possible Implementation:
+    /// <code language="xml">
+    /// &lt;PropertyGroup&gt;
+    ///    &lt;!-- ... --&gt;
+    ///    &lt;ExtendedVersion&gt;0.1.2-rev3.4&lt;/ExtendedVersion&gt;
+    /// &lt;/PropertyGroup&gt;
+    /// 
+    /// 
+    /// &lt;ItemGroup&gt;
+    ///     &lt;AssemblyAttribute Include="AssemblyAttribute.ExtendedVersion"&gt;
+    ///         &lt;_Parameter1&gt;$(ExtendedVersion)&lt;/_Parameter1&gt;
+    ///     &lt;/AssemblyAttribute&gt;
+    /// &lt;/ItemGroup&gt;
+    /// </code>
+    /// 
+    /// Usage:
+    /// <code language="cs">
+    /// string version = System.Reflection.Assembly.GetExecutingAssembly().GetCustomAttribute&lt;ExtendedVersion&gt;().Version;
+    /// </code>
+    /// </remarks>
     [AttributeUsage(AttributeTargets.Assembly, Inherited = false, AllowMultiple = false)]
-    public sealed class SemVerAssemblyAttribute : BaseAssemblyAttribute, ICollection, IEnumerable, IList, IStructuralComparable, IStructuralEquatable, ICloneable
+    public sealed class ExtendedVersion : BaseAssemblyAttribute, ICollection, IEnumerable, IList, IStructuralComparable, IStructuralEquatable, ICloneable
     {
         #region Constructor
         /// <summary>Constructor.</summary>
         /// <remarks><b>This shouldn't be called directly, see <see cref="BaseAssemblyAttribute"/> for more information.</b></remarks>
         /// <param name="value">The attribute's associated value.</param>
-        public SemVerAssemblyAttribute(string value) : base(value)
+        public ExtendedVersion(string value) : base(value)
         {
-            _segments = VersionString.Split('.', '-', '+');
+            _segments = Version.Split('.', '-', '+');
         }
         #endregion Constructor
 
@@ -25,7 +45,7 @@ namespace AssemblyAttribute
 
         #region Properties
         /// <summary>The full version as a string.</summary>
-        public string VersionString => Value;
+        public string Version => Value;
 
         /// <inheritdoc/>
         public int Count => ((ICollection)_segments).Count;
