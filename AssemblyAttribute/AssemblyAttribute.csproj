@@ -12,7 +12,7 @@
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
     <PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
     <Version>0.0.0</Version>
-    <ExtendedVersion>0.0.0-r1</ExtendedVersion>
+    <ExtendedVersion>0.0.0-r2</ExtendedVersion>
     <Title>Easy Assembly Attributes</Title>
     <Description>Provides a basic assembly attribute object for streamlined integration of CI scripts that modify .csproj files, as well as some preset attribute types.</Description>
   </PropertyGroup>
