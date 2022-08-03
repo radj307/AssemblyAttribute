@@ -37,13 +37,19 @@ jobs:
       - name: Pack
         run:  |
               dotnet pack -c ${{ env.BUILD_CONFIGURATION }}
-    
-      - name: Upload Package to nuget.org
-        id:   upload
-        uses: tedd/publish-nuget-neo@v1.0.2
-        with:
-          NUGET_KEY:  '${{ secrets.NUGET_API_KEY }}'
-          REBUILD_PROJECT: false
+              
+      - name: Authenticate to Nuget.org
+        run:  dotnet nuget add source --username radj307 --password ${{ secrets.GITHUB_TOKEN }} --store-password-in-clear-text --name github "https://nuget.pkg.github.com/radj307/index.json"
+        
+      - name: Push Package to Nuget
+        run:  dotnet nuget push "${{ github.workspace }}/AssemblyAttribute/bin/${{ env.BUILD_CONFIGURATION }}/*.nupkg" --api-key "${{ secrets.GITHUB_TOKEN }}" --source "github"
+      
+#      - name: Upload Package to nuget.org
+#        id:   upload
+#        uses: tedd/publish-nuget-neo@v1.0.2
+#        with:
+#          NUGET_KEY:  '${{ secrets.NUGET_API_KEY }}'
+#          REBUILD_PROJECT: false
               
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
