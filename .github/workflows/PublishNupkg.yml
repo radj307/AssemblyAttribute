@@ -46,6 +46,7 @@ jobs:
               mkdir "${{ github.workspace }}/staging"
               cd "${{ github.workspace }}/staging"
               mv "${{ github.workspace }}/AssemblyAttribute/bin/${{ env.BUILD_CONFIGURATION }}/*.nupkg" .
+              ls
         
       - name: Push Package to Nuget
         run:  dotnet nuget push "*.nupkg" --api-key "${{ secrets.GITHUB_TOKEN }}" --source "github"
