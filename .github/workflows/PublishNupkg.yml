@@ -41,8 +41,14 @@ jobs:
       - name: Authenticate to Nuget.org
         run:  dotnet nuget add source --username radj307 --password ${{ secrets.GITHUB_TOKEN }} --store-password-in-clear-text --name github "https://nuget.pkg.github.com/radj307/index.json"
         
+      - name: Stage Package
+        run:  |
+              mkdir "${{ github.workspace }}/staging"
+              cd "${{ github.workspace }}/staging"
+              mv "${{ github.workspace }}/AssemblyAttribute/bin/${{ env.BUILD_CONFIGURATION }}/*.nupkg" .
+        
       - name: Push Package to Nuget
-        run:  dotnet nuget push "${{ github.workspace }}/AssemblyAttribute/bin/${{ env.BUILD_CONFIGURATION }}/*.nupkg" --api-key "${{ secrets.GITHUB_TOKEN }}" --source "github"
+        run:  dotnet nuget push "*.nupkg" --api-key "${{ secrets.GITHUB_TOKEN }}" --source "github"
       
 #      - name: Upload Package to nuget.org
 #        id:   upload
