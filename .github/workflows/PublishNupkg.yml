@@ -30,10 +30,6 @@ jobs:
         with:
           dotnet-version: '${{ env.REQUESTED_DOTNET_VERSION }}'
 
-      - name: Build
-        run:  |
-              dotnet build -c ${{ env.BUILD_CONFIGURATION }}
-              
       - name: Pack
         run:  |
               dotnet pack -c ${{ env.BUILD_CONFIGURATION }}
