@@ -1,34 +1,32 @@
 <Project Sdk="Microsoft.NET.Sdk">
-	<PropertyGroup>
-		<TargetFramework>netstandard2.1</TargetFramework>
-		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-		<Authors>radj307</Authors>
-		<Copyright>GPLv3</Copyright>
-		<PackageProjectUrl>https://github.com/radj307/AssemblyAttribute</PackageProjectUrl>
-		<PackageReadmeFile>README.md</PackageReadmeFile>
-		<RepositoryUrl>https://github.com/radj307/AssemblyAttribute</RepositoryUrl>
-		<RepositoryType>git</RepositoryType>
-		<NeutralLanguage>en-CA</NeutralLanguage>
-		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
-		<PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
-		<ExtendedVersion>0.0.0-r2</ExtendedVersion>
-		<Version>$(ExtendedVersion)</Version>
-		<Description>Provides a basic assembly attribute object for streamlined integration of CI scripts that modify .csproj files, as well as some preset attribute types.</Description>
-		<Nullable>annotations</Nullable>
-	</PropertyGroup>
-	
-	<ItemGroup>
-		<AssemblyAttribute Include="AssemblyAttribute.ExtendedVersionAttribute">
-			<_Parameter1>$(ExtendedVersion)</_Parameter1>
-			<_Parameter2>$(ExtendedVersion)</_Parameter2>
-			<_Parameter3>$(ExtendedVersion)</_Parameter3>
-		</AssemblyAttribute>
-	</ItemGroup>
-	
-	<ItemGroup>
-		<None Include="..\README.md">
-			<Pack>True</Pack>
-			<PackagePath>\</PackagePath>
-		</None>
-	</ItemGroup>
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Authors>radj307</Authors>
+    <Copyright>GPLv3</Copyright>
+    <PackageProjectUrl>https://github.com/radj307/AssemblyAttribute</PackageProjectUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryUrl>https://github.com/radj307/AssemblyAttribute</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <NeutralLanguage>en-CA</NeutralLanguage>
+    <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+    <PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
+    <ExtendedVersion>1.0.0</ExtendedVersion>
+    <Version>1.0.0</Version>
+    <Description>Provides a basic assembly attribute object for streamlined integration of CI scripts that modify .csproj files, as well as some preset attribute types.</Description>
+    <Nullable>annotations</Nullable>
+  </PropertyGroup>
+  <ItemGroup>
+    <AssemblyAttribute Include="AssemblyAttribute.ExtendedVersionAttribute">
+      <_Parameter1>$(ExtendedVersion)</_Parameter1>
+      <_Parameter2>$(ExtendedVersion)</_Parameter2>
+      <_Parameter3>$(ExtendedVersion)</_Parameter3>
+    </AssemblyAttribute>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
 </Project>
