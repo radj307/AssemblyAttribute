@@ -43,13 +43,12 @@ jobs:
         
       - name: Stage Package
         run:  |
-              mkdir "${{ github.workspace }}/staging"
-              cd "${{ github.workspace }}/staging"
-              mv "${{ github.workspace }}/AssemblyAttribute/bin/${{ env.BUILD_CONFIGURATION }}/*.nupkg" .
+              $staging = "${{ github.workspace }}/staging"
+              mv "${{ github.workspace }}/AssemblyAttribute/bin/${{ env.BUILD_CONFIGURATION }}/*.nupkg" $staging
               ls
         
       - name: Push Package to Nuget
-        run:  dotnet nuget push "./*.nupkg" --api-key "${{ secrets.GITHUB_TOKEN }}" --source "github"
+        run:  dotnet nuget push "*.nupkg" --api-key "${{ secrets.GITHUB_TOKEN }}" --source "github"
       
 #      - name: Upload Package to nuget.org
 #        id:   upload
