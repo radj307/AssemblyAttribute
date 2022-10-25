@@ -48,7 +48,7 @@ jobs:
               ls
         
       - name: Push Package to Nuget
-        run:  dotnet nuget push "*.nupkg" --api-key "${{ secrets.GITHUB_TOKEN }}" --source "github"
+        run:  dotnet nuget push $([System.IO.Path]::Combine($staging, "*.nupkg")) --api-key "${{ secrets.GITHUB_TOKEN }}" --source "github"
       
 #      - name: Upload Package to nuget.org
 #        id:   upload
