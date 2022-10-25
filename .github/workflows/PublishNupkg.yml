@@ -50,8 +50,8 @@ jobs:
       - name: Push Package to Nuget
         id:   upload
         run:  |
-              cd "${{ github.workspace }}/staging"
-              dotnet nuget push "./*.nupkg" --api-key "${{ secrets.GITHUB_TOKEN }}" --source "github"
+              $packages = Get-ChildItem -File -Filter "*.nupkg" -Path "${{ github.workspace }}/staging"
+              dotnet nuget push $packages --api-key "${{ secrets.GITHUB_TOKEN }}" --source "github"
       
 #      - name: Upload Package to nuget.org
 #        id:   upload
