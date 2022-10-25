@@ -45,10 +45,10 @@ jobs:
         run:  |
               $staging = "${{ github.workspace }}/staging"
               mv "${{ github.workspace }}/AssemblyAttribute/bin/${{ env.BUILD_CONFIGURATION }}/*.nupkg" $staging
-              ls
+              ls $staging
         
       - name: Push Package to Nuget
-        run:  dotnet nuget push $([System.IO.Path]::Combine($staging, "*.nupkg")) --api-key "${{ secrets.GITHUB_TOKEN }}" --source "github"
+        run:  foreach ($nupkg in Get-ChildItem -Path $staging -Filter "*.nupkg") { dotnet nuget push $nupkg --api-key "${{ secrets.GITHUB_TOKEN }}" --source "github" }
       
 #      - name: Upload Package to nuget.org
 #        id:   upload
