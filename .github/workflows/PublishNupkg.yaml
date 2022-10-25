@@ -30,7 +30,7 @@ jobs:
       - name: Setup .NET CLI
         uses: actions/setup-dotnet@v3.0.2
         with:
-          source-url: https://nuget.pkg.github.com/<owner>/index.json
+          source-url: https://nuget.pkg.github.com/radj307/index.json
         env:
           NUGET_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
