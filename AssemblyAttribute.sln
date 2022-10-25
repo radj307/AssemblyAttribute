@@ -3,7 +3,14 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AssemblyAttribute", "AssemblyAttribute\AssemblyAttribute.csproj", "{00E680B8-078F-4901-A737-7D13A8F998AE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AssemblyAttribute", "AssemblyAttribute\AssemblyAttribute.csproj", "{00E680B8-078F-4901-A737-7D13A8F998AE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{12A11435-44CA-49D5-A632-92D38BFD9C27}"
+	ProjectSection(SolutionItems) = preProject
+		LICENSE = LICENSE
+		README.md = README.md
+		SetVersion.ps1 = SetVersion.ps1
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

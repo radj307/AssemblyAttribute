@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 
 namespace AssemblyAttribute
 {
@@ -26,14 +27,25 @@ namespace AssemblyAttribute
     [AttributeUsage(AttributeTargets.Assembly, Inherited = false, AllowMultiple = false)]
     public abstract class BaseAssemblyAttribute : Attribute
     {
+        #region Constructor
         /// <summary>
-        /// This is the string passed from the constructor.
+        /// Creates a new <see cref="BaseAssemblyAttribute"/> instance with the given <paramref name="values"/>.
         /// </summary>
-        protected string Value { get; }
+        /// <remarks>
+        /// <b>If you're reading this, this likely isn't what you're looking for!</b><br/>
+        /// The <see cref="BaseAssemblyAttribute"/> type is automatically constructed when you add it to your <i>.csproj</i> project file and you don't have to call this constructor yourself.<br/>
+        /// See the <see href="https://www.nuget.org/packages/AssemblyAttribute#readme-body-tab">documentation</see> for more information.
+        /// </remarks>
+        /// <param name="values">Any number of string arguments.<br/>The <see cref="Values"/> property is assigned directly to the received array.</param>
+        protected BaseAssemblyAttribute(params string[] values) => Values = values;
+        #endregion Constructor
+
+        #region Properties
         /// <summary>
-        /// Attribute Constructor
+        /// These are string(s) passed from the constructor.<br/>
+        /// Each one corresponds to 
         /// </summary>
-        /// <param name="value"></param>
-        protected BaseAssemblyAttribute(string value = "") => Value = value;
+        protected string[] Values { get; }
+        #endregion Properties
     }
 }
