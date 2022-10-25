@@ -48,7 +48,11 @@ jobs:
               ls $staging
         
       - name: Push Package to Nuget
-        run:  foreach ($nupkg in Get-ChildItem -Path $staging -Filter "*.nupkg") { dotnet nuget push $nupkg --api-key "${{ secrets.GITHUB_TOKEN }}" --source "github" }
+        id:   upload
+        run:  |
+              foreach ($nupkg in Get-ChildItem -Path $staging -Filter "*.nupkg") {
+                dotnet nuget push $nupkg --api-key "${{ secrets.GITHUB_TOKEN }}" --source "github"
+              }
       
 #      - name: Upload Package to nuget.org
 #        id:   upload
@@ -61,5 +65,5 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: nupkg
-          path: '${{ steps.upload.outputs.PACKAGE_PATH }}'
+          path: '$staging/*.nupkg'
 
