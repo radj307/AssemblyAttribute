@@ -43,10 +43,10 @@ jobs:
       - name: Push to GPR & nuget.org
         run:  |
               Write-Output "### Pushing to nuget.org"
-              dotnet nuget push */bin/${{env.BUILD_CONFIGURATION}}/*.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json --skip-duplicates
+              dotnet nuget push */bin/${{env.BUILD_CONFIGURATION}}/*.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json --skip-duplicate
               Write-Output "### Pushing to Github Package Registry..."
               dotnet nuget add source --username radj307 --password ${{ secrets.GITHUB_TOKEN }} --store-password-in-clear-text --name github "https://nuget.pkg.github.com/radj307/index.json"
-              dotnet nuget push */bin/${{env.BUILD_CONFIGURATION}}/*.nupkg -k ${{ github.token }} -s https://nuget.pkg.github.com/radj307/index.json --skip-duplicates
+              dotnet nuget push */bin/${{env.BUILD_CONFIGURATION}}/*.nupkg -k ${{ github.token }} --skip-duplicate
         
       - name: Upload Artifact(s)
         uses: actions/upload-artifact@v3.1.1
