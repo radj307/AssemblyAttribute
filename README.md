@@ -9,7 +9,7 @@ You can use it to create your own assembly attributes, or just as example code -
 
 ### `ExtendedVersionAttribute`
 
-Derives from `BaseAssemblyAttribute` and acts as a method to retrieve the full version string *(`ExtendedVersionAttribute.Version`)*, and an array of its segments after being split by all occurrences of: `.`, `-`, or `+` *(`ExtendedVersionAttribute.VersionSegments`)*.  
+Derives from `BaseAssemblyAttribute` and acts as a method to retrieve the **full version string** and **an array of its segments** after being split by all occurrences of `.`, `-`, or `+` via the `ExtendedVersionAttribute.Version` and `ExtendedVersionAttribute.VersionSegments` properties, respectively.  
 I use it with my auto-versioning scripts so I can retrieve the latest git tag in the local repository directly in the code, and that's what this guide will focus on.
 
  1.	Add the **[AssemblyAttribute](https://www.nuget.org/packages/AssemblyAttribute nuget package)** to your project.
