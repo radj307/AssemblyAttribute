@@ -43,9 +43,9 @@ jobs:
         
       - name: Stage Package
         run:  |
-              $staging = "${{ github.workspace }}/staging"
-              mv "${{ github.workspace }}/AssemblyAttribute/bin/${{ env.BUILD_CONFIGURATION }}/*.nupkg" $staging
-              ls $staging
+              mkdir "${{ github.workspace }}/staging"
+              mv "${{ github.workspace }}/AssemblyAttribute/bin/${{ env.BUILD_CONFIGURATION }}/*.nupkg" "${{ github.workspace }}/staging"
+              ls "${{ github.workspace }}/staging"
         
       - name: Push Package to Nuget
         id:   upload
