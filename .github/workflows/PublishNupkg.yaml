@@ -9,16 +9,17 @@ on:
 
 defaults:
   run:
-    shell: |
+    shell: | # Set the default shell for all commands:
            pwsh -noninteractive -command "try {{ $ErrorActionPreference='Stop'; . '{0}' }} catch {{ Write-Error ""FAILED: $_""; throw; }} if ((Test-Path -LiteralPath variable:\LASTEXITCODE)) {{ exit $LASTEXITCODE }}"
 env:
-  # This assumes that your project file is located at: '{github.workspace}/{PROJECT_NAME}/{PROJECT_NAME}{PROJECT_EXTENSION}'
   PROJECT_NAME:             'AssemblyAttribute'
   BUILD_CONFIGURATION:      'Release'
-  REQUESTED_DOTNET_VERSION: '6.x.x'
+  # Important files relative to your REPOSITORY ROOT directory:
+  #   - `{PROJECT_NAME}/{PROJECT_NAME}.csproj`
+  #   - `{PROJECT_NAME}/{PROJECT_NAME}/bin/{BUILD_CONFIGURATION}/{PROJECT_NAME}.{VERSION}.nupkg`
 
 jobs:
-  build:
+  publish:
     runs-on: windows-latest
     env:
       DOTNET_NOLOGO:                true
@@ -42,9 +43,9 @@ jobs:
 
       - name: Push to GPR & nuget.org
         run:  |
-              Write-Output "### Pushing to nuget.org"
+              Write-Output "","# Pushing to (nuget.org) ..."
               dotnet nuget push */bin/${{env.BUILD_CONFIGURATION}}/*.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json --skip-duplicate
-              Write-Output "### Pushing to Github Package Registry..."
+              Write-Output "","# Pushing to (Github Package Registry) ..."
               dotnet nuget add source --username radj307 --password ${{ secrets.GITHUB_TOKEN }} --store-password-in-clear-text --name github "https://nuget.pkg.github.com/radj307/index.json"
               dotnet nuget push */bin/${{env.BUILD_CONFIGURATION}}/*.nupkg -k ${{ github.token }} -s https://nuget.pkg.github.com/radj307/index.json --skip-duplicate
         
