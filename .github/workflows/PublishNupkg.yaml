@@ -44,8 +44,8 @@ jobs:
 
       - name: Push to GPR & nuget.org
         run:  |
-              dotnet nuget push ${{github.workspace}}/${{env.PROJECT_NAME}}/bin/${{env.BUILD_CONFIGURATION}}/*.nupkg
-              dotnet nuget push ${{github.workspace}}/${{env.PROJECT_NAME}}/bin/${{env.BUILD_CONFIGURATION}}/*.nupkg -k $NUGET_AUTH_TOKEN -s https://api.nuget.org/v3/index.json
+              dotnet nuget push */bin/${{env.BUILD_CONFIGURATION}}/*.nupkg
+              dotnet nuget push */bin/${{env.BUILD_CONFIGURATION}}/*.nupkg -k $NUGET_AUTH_TOKEN -s https://api.nuget.org/v3/index.json
         env:
           NUGET_AUTH_TOKEN: ${{ secrets.NUGET_API_KEY }}
         
