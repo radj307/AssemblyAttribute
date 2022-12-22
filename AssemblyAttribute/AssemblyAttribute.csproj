@@ -9,8 +9,8 @@
     <RepositoryUrl>https://github.com/radj307/AssemblyAttribute</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <NeutralLanguage>en-CA</NeutralLanguage>
-    <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
-    <PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
+    <PackageRequireLicenseAcceptance>False</PackageRequireLicenseAcceptance>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <ExtendedVersion>1.0.1</ExtendedVersion>
     <Version>1.0.1</Version>
     <Description>Provides a basic assembly attribute object for streamlined integration of CI scripts that modify .csproj files, as well as some preset attribute types.</Description>
