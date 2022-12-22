@@ -11,7 +11,7 @@
     <NeutralLanguage>en-CA</NeutralLanguage>
     <PackageRequireLicenseAcceptance>False</PackageRequireLicenseAcceptance>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <ExtendedVersion>1.0.1</ExtendedVersion>
+    <ExtendedVersion>1.0.1-1</ExtendedVersion>
     <Version>1.0.1</Version>
     <Description>Provides a basic assembly attribute object for streamlined integration of CI scripts that modify .csproj files, as well as some preset attribute types.</Description>
     <Nullable>annotations</Nullable>
